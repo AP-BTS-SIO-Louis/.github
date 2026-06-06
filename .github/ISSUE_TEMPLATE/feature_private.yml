@@ -1,0 +1,35 @@
+name: 🔒 Tickets (Privé)
+description: Formulaire structuré réservé à l'équipe interne pour détailler un ticket.
+title: ""
+labels: ["enhancement", "internal"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: 🎯 Contexte
+      description: Expliquez le besoin métier et l'objectif de cette fonctionnalité.
+      placeholder: "<Description du contexte>"
+    validations:
+      required: true
+
+  - type: textarea
+    id: missions
+    attributes:
+      label: 📋 Missions
+      description: Définissez les différentes étapes et les tâches associées.
+      value: |
+        ### <Titre de la mission 1>
+        - [ ] **<Tâche> :** <Description de la tâche>
+        - [ ] **<Tâche> :** <Description de la tâche>
+    validations:
+      required: true
+
+  - type: textarea
+    id: resources
+    attributes:
+      label: 🔗 Ressources
+      description: Ajoutez les liens utiles (documentation, schémas, tickets liés).
+      value: |
+        - 
+    validations:
+      required: false
