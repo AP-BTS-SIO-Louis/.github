@@ -1,4 +1,4 @@
-name: "🛡️ Security"
+name: "🛡️ Security Gate"
 
 on:
   workflow_call:
@@ -11,9 +11,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Secret Scanning
-        uses: trufflesecurity/trufflehog@main
-        with:
-          extra_args: --no-verification
+      - name: Run TruffleHog Filesystem Scan
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/pwd trufflesecurity/trufflehog:latest filesystem /pwd --no-verification --fail
