@@ -16,4 +16,4 @@ jobs:
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          extra_args: --only-verified=false
+          extra_args: --no-verification --fail
