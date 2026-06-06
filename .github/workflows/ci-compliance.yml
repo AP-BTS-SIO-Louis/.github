@@ -1,40 +1,48 @@
 name: "🕵️‍♂️ Checking compliance"
 
+# 1. Déclencheur permettant d'être appelé par d'autres dépôts
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
-  pull-requests: read
+  workflow_call:
 
 jobs:
-  compliance:
+  # --- SCAN DE SÉCURITÉ ---
+  security:
+    name: TruffleHog Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
-      - name: TruffleHog Scan
+
+      - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
           extra_args: --results=verified,unknown --fail
 
-      - name: Check branch name conformance
+  # --- CONFORMITÉ DE LA BRANCHE ---
+  branch-check:
+    name: Branch Naming Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Check branch format
         run: |
           BRANCH_NAME="${{ github.head_ref }}"
           REGEXP='^(feat|fix|docs|infra|chore)\/[0-9]+-[a-z0-9-]+$'
           if [[ ! $BRANCH_NAME =~ $REGEXP ]]; then
-            echo "❌ Erreur : Le nom de la branche '$BRANCH_NAME' ne respecte pas le référentiel 002."
-            echo "Format attendu : [type]/[issue-id]-[courte-description] (ex: feat/12-add-sso-authentik)"
+            echo "❌ Erreur : '$BRANCH_NAME' ne respecte pas le référentiel 002."
             exit 1
           fi
 
-      - name: Lint commits format
+  # --- CONFORMITÉ DES COMMITS ---
+  commit-lint:
+    name: Commitlint Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint commits
         uses: wagoid/commitlint-github-action@v6
