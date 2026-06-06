@@ -61,13 +61,13 @@ jobs:
       - name: Lint commits
         id: run_commitlint
         uses: wagoid/commitlint-github-action@v6
-        continue-on-error: true
 
       - name: Commit procedure error
-        if: steps.run_commitlint.outcome == 'failure'
+        if: failure()
         run: |
           echo "❌ NOM DU COMMIT NON CONFORME"
           echo "========================================================================="
+          echo "👉 Votre branche actuelle : '$COMMIT_NAME'"
           echo "👉 Format obligatoire : <type>(<scope>): <description courte>"
           echo "👉 Exemple : feat(ansible): ajout du role de deploiement apache"
           echo "========================================================================="
