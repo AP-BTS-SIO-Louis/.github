@@ -1,0 +1,19 @@
+name: "🛡️ Security"
+
+on:
+  workflow_call:
+
+jobs:
+  trufflehog:
+    name: TruffleHog Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --results=verified,unknown
