@@ -11,7 +11,7 @@ body:
     id: issue-link
     attributes:
       label: 🔗 Issue liée
-      description: Spécifiez l'issue associée pour la fermer automatiquement (ex: Closes #12).
+      description: "Spécifiez l'issue associée pour la fermer automatiquement (ex: Closes #12)."
       placeholder: "Closes #"
     validations:
       required: true
