@@ -1,4 +1,4 @@
-name: 🐛 Rapport de Bug (Public)
+name: 🐛 Rapport de bug (Public)
 description: Signalez un dysfonctionnement rencontré sur l'application ou l'infrastructure.
 title: "[Bug] : <brève description du problème>"
 labels: ["bug", "triage"]

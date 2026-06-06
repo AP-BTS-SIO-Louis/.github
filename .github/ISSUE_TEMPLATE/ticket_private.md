@@ -5,6 +5,16 @@ title: "[feat] : "
 labels: ["enhancement", "internal"]
 ---
 
+<!-- 
+💡 CONVENTION DE NOMMAGE DES TITRES 
+Veuillez remplacer le préfixe par l'un des types standardisés suivants selon la nature du ticket :
+
+  [Feature]     : Nouvelle fonctionnalité ou évolution d'infrastructure
+  [Bug]         : Dysfonctionnement ou régression à corriger
+  [Chore]       : Tâche de maintenance, mise à jour ou restructuration de code
+  [Docs]        : Création ou modification de documentation (README, Runbooks...)
+-->
+
 # Titre de la fonctionnalité
 
 ## 🎯 Contexte
@@ -24,4 +34,4 @@ labels: ["enhancement", "internal"]
 - [ ] La documentation d'infrastructure ou de développement a été mise à jour.
 
 ## 🔗 Ressources
--
+- [Lien vers la documentation](https://...)
