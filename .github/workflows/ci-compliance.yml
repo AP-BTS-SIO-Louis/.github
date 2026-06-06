@@ -22,7 +22,7 @@ jobs:
 
   # --- CONFORMITÉ DE LA BRANCHE ---
   branch-check:
-    name: Branch Naming Check
+    name: Branch naming check
     runs-on: ubuntu-latest
     # On exécute ceci UNIQUEMENT sur les PR. (Une branche 'main' poussée échouerait au test regex).
     if: github.event_name == 'pull_request'
@@ -51,7 +51,7 @@ jobs:
 
   # --- CONFORMITÉ DES COMMITS ---
   commit-lint:
-    name: Commitlint Format
+    name: Commit naming check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -63,7 +63,7 @@ jobs:
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true
 
-      - name: Custom Commit Procedure Logs
+      - name: Commit procedure error
         if: steps.run_commitlint.outcome == 'failure'
         run: |
           echo "❌ NOM DU COMMIT NON CONFORME"
